@@ -1,0 +1,39 @@
+# ── Node.js ───────────────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Environment Variables ─────────────────────────────────────────────────
+# NEVER commit .env files — they contain secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Keep the examples as documentation
+!.env.example
+
+# ── Build Outputs ─────────────────────────────────────────────────────────
+dist/
+build/
+.vite/
+frontend/dist/
+
+# ── Hardhat Artifacts ─────────────────────────────────────────────────────
+contracts/artifacts/
+contracts/cache/
+contracts/typechain-types/
+
+# ── IDE & Editor ──────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+
+# ── Logs ──────────────────────────────────────────────────────────────────
+logs/
+*.log

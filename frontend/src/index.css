@@ -1,0 +1,234 @@
+/*
+ * index.css — Global styles for the Certificate Verification System
+ *
+ * Structure:
+ *  1. Google Fonts import
+ *  2. Tailwind directives
+ *  3. CSS custom properties (design tokens)
+ *  4. Base resets & typography
+ *  5. Glassmorphism utility classes
+ *  6. Glow & gradient utilities
+ *  7. Animation helpers
+ */
+
+/* ── 1. Google Fonts ─────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── 2. Tailwind directives ──────────────────────────────────────────────── */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── 3. CSS Custom Properties (Design Tokens) ────────────────────────────── */
+:root {
+  /* Core backgrounds */
+  --bg-primary:   #07080f;
+  --bg-card:      #0d0f1e;
+  --bg-glass:     rgba(13, 15, 30, 0.6);
+  --border-glass: rgba(255, 255, 255, 0.08);
+
+  /* Neon accents */
+  --neon-blue:    #3b82f6;
+  --neon-purple:  #8b5cf6;
+  --neon-cyan:    #06b6d4;
+
+  /* Status */
+  --success:      #10b981;
+  --danger:       #ef4444;
+  --warning:      #f59e0b;
+
+  /* Typography */
+  --text-primary:   #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted:     #475569;
+}
+
+/* ── 4. Base Resets & Typography ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  /* Subtle radial gradient on the background to add depth */
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(139, 92, 246, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Scrollbar styling for Webkit browsers */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--neon-purple), var(--neon-blue));
+  border-radius: 3px;
+}
+
+/* ── 5. Glassmorphism Utility Classes ────────────────────────────────────── */
+@layer components {
+
+  /* Base glass panel — use on cards, modals, navbars */
+  .glass {
+    background: var(--bg-glass);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid var(--border-glass);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Slightly more opaque version for popovers / dropdowns */
+  .glass-heavy {
+    background: rgba(13, 15, 30, 0.85);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  /* ── Primary gradient button ─────────────────────────────────────────── */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2;
+    @apply px-6 py-3 rounded-xl font-semibold text-sm;
+    @apply text-white transition-all duration-300 ease-out;
+    @apply select-none cursor-pointer;
+    background: linear-gradient(135deg, var(--neon-purple) 0%, var(--neon-blue) 100%);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 32px rgba(139, 92, 246, 0.55), 0 0 12px rgba(59, 130, 246, 0.3);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* ── Secondary outlined button ───────────────────────────────────────── */
+  .btn-secondary {
+    @apply relative inline-flex items-center justify-center gap-2;
+    @apply px-6 py-3 rounded-xl font-semibold text-sm;
+    @apply text-slate-300 transition-all duration-300 ease-out;
+    @apply border border-slate-700 cursor-pointer select-none;
+  }
+  .btn-secondary:hover {
+    @apply border-slate-500 text-white;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  /* ── Form input field ─────────────────────────────────────────────────── */
+  .input-glass {
+    @apply w-full px-4 py-3 rounded-xl text-sm text-slate-100;
+    @apply placeholder-slate-500 outline-none transition-all duration-300;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .input-glass:focus {
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15), 0 0 20px rgba(139, 92, 246, 0.1);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  /* ── Badge / Status indicators ───────────────────────────────────────── */
+  .badge-verified {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold;
+    color: var(--success);
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.2);
+  }
+
+  .badge-invalid {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold;
+    color: var(--danger);
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    box-shadow: 0 0 16px rgba(239, 68, 68, 0.2);
+  }
+
+  .badge-pending {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold;
+    color: var(--warning);
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+}
+
+/* ── 6. Glow & Gradient Utilities ────────────────────────────────────────── */
+@layer utilities {
+
+  /* Text gradients */
+  .text-gradient-primary {
+    background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-success {
+    background: linear-gradient(135deg, #10b981, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Border glow on focus / hover */
+  .border-glow-purple { box-shadow: 0 0 0 1px var(--neon-purple), 0 0 16px rgba(139, 92, 246, 0.3); }
+  .border-glow-blue   { box-shadow: 0 0 0 1px var(--neon-blue),   0 0 16px rgba(59, 130, 246, 0.3); }
+  .border-glow-green  { box-shadow: 0 0 0 1px var(--success),     0 0 16px rgba(16, 185, 129, 0.3); }
+  .border-glow-red    { box-shadow: 0 0 0 1px var(--danger),      0 0 16px rgba(239, 68, 68, 0.3); }
+
+  /* Shimmer gradient background — used on skeleton loaders */
+  .shimmer-bg {
+    background: linear-gradient(90deg,
+      rgba(255,255,255,0.02) 25%,
+      rgba(255,255,255,0.06) 50%,
+      rgba(255,255,255,0.02) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.8s linear infinite;
+  }
+}
+
+/* ── 7. Animation Keyframes ──────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.animate-slide-up  { animation: slide-up 0.4s ease-out forwards; }
+.animate-scale-in  { animation: scale-in 0.3s ease-out forwards; }
+.animate-float     { animation: float 3s ease-in-out infinite; }

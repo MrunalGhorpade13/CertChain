@@ -1,0 +1,19 @@
+[
+  {
+    "certificateId": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+    "studentName": "John Doe",
+    "studentEmail": "johndoe@example.com",
+    "courseName": "Introduction to Computer Science",
+    "grade": "A+",
+    "issuerName": "University of Blockchain",
+    "issuerAddress": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+    "issueDate": "2026-05-19T00:00:00.000Z",
+    "txHash": "0xabcdef1234567890",
+    "_id": "oqvd2rs",
+    "id": "gp0ws9g",
+    "createdAt": "2026-05-19T08:30:14.174Z",
+    "updatedAt": "2026-05-19T08:30:14.175Z",
+    "isRevoked": false,
+    "isValid": true
+  }
+]
