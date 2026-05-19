@@ -29,9 +29,11 @@ const Web3Context = createContext({
   disconnectWallet: () => {},
 });
 
+import contractInfo from '../contracts/CertificateRegistry.json';
+
 // ── Supported networks ────────────────────────────────────────────────────
-// Chain IDs: 1 = Ethereum Mainnet, 11155111 = Sepolia Testnet, 31337 = Hardhat local
-const SUPPORTED_CHAIN_IDS = [11155111, 31337];
+// Dynamically restrict to the chain ID where the contract is currently deployed
+const SUPPORTED_CHAIN_IDS = [Number(contractInfo.chainId)];
 const CHAIN_NAMES = {
   1:        'Ethereum Mainnet',
   11155111: 'Sepolia Testnet',
