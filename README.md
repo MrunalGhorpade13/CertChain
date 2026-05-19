@@ -137,30 +137,4 @@ Open `http://localhost:5173` in your browser.
     │       └── CertificateRegistry.json # Deployed address & ABI
 ```
 
----
 
-## 🎓 Viva Voce Preparation (Q&A)
-
-Here are the most common questions university external examiners ask during final project presentations:
-
-### Q1: Why did you use a hybrid architecture (on-chain + off-chain) instead of storing everything on the blockchain?
-**Answer**:
-1. **Gas Cost**: Storing strings like names and courses on-chain is extremely expensive on Ethereum. By hashing them into a single `bytes32` ID, we only write 32 bytes to the blockchain, saving over 90% of gas costs.
-2. **GDPR/Privacy**: Blockchains are immutable and public. If we stored student names and emails on-chain, it would violate privacy laws (e.g., GDPR's "Right to be Forgotten"). Storing PII off-chain in MongoDB allows us to delete or modify records if required, while keeping the validation hash immutable on-chain.
-
-### Q2: What is the purpose of `solidityPackedKeccak256`?
-**Answer**:
-It is a cryptographic hashing function. It takes the student's details (Name, Email, Course, Grade, Issuer Name), packs them tightly into byte streams, and hashes them into a unique 64-character hexadecimal signature (a SHA-3 Keccak-256 hash). 
-- If a student tries to change even a single character in their name, the resulting hash will change completely (avoids forgery/identity fraud).
-
-### Q3: How does the public verify a certificate without connecting a MetaMask wallet?
-**Answer**:
-For verification, we instantiate a **read-only provider** (`ethers.JsonRpcProvider`) pointing to our local node or Sepolia testnet RPC. Since verification only calls `view` functions on the smart contract (`verifyCertificate`), it does not require gas or user signatures, allowing instant verification without prompting MetaMask.
-
-### Q4: Explain the modifier `onlyAuthorizedIssuer` in your smart contract.
-**Answer**:
-Modifiers are reusable checks run before function execution. In `CertificateRegistry.sol`, the `onlyAuthorizedIssuer` modifier checks that the address calling `issueCertificate` or `revokeCertificate` exists in the `authorizedIssuers` mapping. If an unauthorized address attempts to call it, the transaction reverts and fails immediately.
-
-### Q5: How do you handle database failover in your backend server?
-**Answer**:
-In our database connection configuration (`db.js`), we catch Mongoose connection errors. If MongoDB is not running locally, the server logs a warning and switches the global query model to use a file-based JSON database (`db_fallback.json`) mimicking MongoDB query filters. This keeps the application fully functional for live demos without server dependencies.

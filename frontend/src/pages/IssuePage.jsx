@@ -196,92 +196,92 @@ export default function IssuePage() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 sm:py-16">
       <div className="text-center mb-10">
-        <h1 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500 bg-clip-text text-transparent">
+        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight sm:text-4xl bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500 bg-clip-text text-transparent">
           Issuer Dashboard
         </h1>
-        <p className="mt-3 max-w-2xl mx-auto text-slate-400 text-sm sm:text-base">
+        <p className="mt-3 max-w-2xl mx-auto text-slate-600 dark:text-slate-400 text-sm sm:text-base">
           Generate tamper-proof academic credentials, write them onto the immutable blockchain ledger, and store metadata securely off-chain.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Issuance Form Card (7 Columns) */}
-        <div className="lg:col-span-7 glass border border-white/[0.06] rounded-2xl p-6 sm:p-8 relative overflow-hidden">
+        <div className="lg:col-span-7 glass border border-black/5 dark:border-white/[0.06] rounded-2xl p-6 sm:p-8 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-36 h-36 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
           
-          <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
             <span>🎓</span> Issue New Certificate
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Connected Account Info */}
-            <div className="p-3 bg-white/[0.02] border border-white/[0.04] rounded-lg text-xs space-y-1">
-              <div className="flex justify-between text-slate-400">
+            <div className="p-3 bg-black/5 dark:bg-black/[0.03] dark:bg-white/[0.02] border border-black/5 dark:border-white/[0.04] rounded-lg text-xs space-y-1">
+              <div className="flex justify-between text-slate-600 dark:text-slate-400">
                 <span>Issuer Wallet:</span>
                 <span className="text-purple-400 font-mono">{account ? `${account.slice(0, 8)}...${account.slice(-8)}` : 'Not Connected'}</span>
               </div>
-              <div className="flex justify-between text-slate-400">
+              <div className="flex justify-between text-slate-600 dark:text-slate-400">
                 <span>Active Network:</span>
                 <span className="text-blue-400">{chainName}</span>
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Student Full Name *</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">Student Full Name *</label>
               <input
                 type="text"
                 value={studentName}
                 onChange={(e) => setStudentName(e.target.value)}
                 placeholder="e.g. Johnathan Smith"
                 required
-                className="w-full bg-slate-900/50 border border-slate-700/60 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm"
+                className="w-full bg-white/80 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700/60 rounded-xl px-4 py-3 text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm"
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Student Email</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">Student Email</label>
                 <input
                   type="email"
                   value={studentEmail}
                   onChange={(e) => setStudentEmail(e.target.value)}
                   placeholder="student@example.com"
-                  className="w-full bg-slate-900/50 border border-slate-700/60 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm"
+                  className="w-full bg-white/80 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700/60 rounded-xl px-4 py-3 text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Grade / GPA / Classification</label>
+                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">Grade / GPA / Classification</label>
                 <input
                   type="text"
                   value={grade}
                   onChange={(e) => setGrade(e.target.value)}
                   placeholder="e.g. A+ or First Class"
-                  className="w-full bg-slate-900/50 border border-slate-700/60 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm"
+                  className="w-full bg-white/80 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700/60 rounded-xl px-4 py-3 text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Course / Degree Title *</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">Course / Degree Title *</label>
               <input
                 type="text"
                 value={courseName}
                 onChange={(e) => setCourseName(e.target.value)}
                 placeholder="e.g. Bachelor of Science in Software Engineering"
                 required
-                className="w-full bg-slate-900/50 border border-slate-700/60 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm"
+                className="w-full bg-white/80 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700/60 rounded-xl px-4 py-3 text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Issuer Institution Name *</label>
+              <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-2">Issuer Institution Name *</label>
               <input
                 type="text"
                 value={issuerName}
                 onChange={(e) => setIssuerName(e.target.value)}
                 placeholder="e.g. Global Tech University"
                 required
-                className="w-full bg-slate-900/50 border border-slate-700/60 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm"
+                className="w-full bg-white/80 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700/60 rounded-xl px-4 py-3 text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm"
               />
             </div>
 
@@ -289,8 +289,8 @@ export default function IssuePage() {
             {calculatedHash && (
               <div className="p-4 bg-purple-500/5 border border-purple-500/20 rounded-xl animate-fade-in space-y-1">
                 <span className="block text-[10px] font-semibold text-purple-400 uppercase tracking-wider">Generated Cryptographic Hash (Certificate ID)</span>
-                <span className="block font-mono text-[10px] sm:text-xs text-slate-300 break-all select-all">{calculatedHash}</span>
-                <span className="block text-[10px] text-slate-500">This hash is mathematically unique. If you change a single letter in the student's name, the hash will change completely (avoids identity fraud).</span>
+                <span className="block font-mono text-[10px] sm:text-xs text-slate-700 dark:text-slate-300 break-all select-all">{calculatedHash}</span>
+                <span className="block text-[10px] text-slate-500 dark:text-slate-500">This hash is mathematically unique. If you change a single letter in the student's name, the hash will change completely (avoids identity fraud).</span>
               </div>
             )}
 
@@ -301,7 +301,7 @@ export default function IssuePage() {
             >
               {isIssuing ? (
                 <>
-                  <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                  <svg className="animate-spin h-5 w-5 text-slate-900 dark:text-white" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
@@ -319,9 +319,9 @@ export default function IssuePage() {
         {/* Issuer History Sidebar (5 Columns) */}
         <div className="lg:col-span-5 space-y-6">
           {/* Status Badge card */}
-          <div className="glass border border-white/[0.06] rounded-2xl p-5 relative overflow-hidden">
-            <h3 className="text-sm font-bold text-white mb-2 uppercase tracking-wider text-slate-300">Issuer Quick Guide</h3>
-            <ul className="text-xs text-slate-400 space-y-2 leading-relaxed list-disc list-inside">
+          <div className="glass border border-black/5 dark:border-white/[0.06] rounded-2xl p-5 relative overflow-hidden">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-2 uppercase tracking-wider text-slate-700 dark:text-slate-300">Issuer Quick Guide</h3>
+            <ul className="text-xs text-slate-600 dark:text-slate-400 space-y-2 leading-relaxed list-disc list-inside">
               <li>Deploying requires gas in your Ethereum account (ETH).</li>
               <li>Only universities added as authorized issuers in the Registry contract can issue.</li>
               <li>You can view verification results instantly on the public portal.</li>
@@ -329,8 +329,8 @@ export default function IssuePage() {
           </div>
 
           {/* History List Card */}
-          <div className="glass border border-white/[0.06] rounded-2xl p-6 flex flex-col max-h-[580px]">
-            <h3 className="text-lg font-bold text-white mb-4 flex items-center justify-between">
+          <div className="glass border border-black/5 dark:border-white/[0.06] rounded-2xl p-6 flex flex-col max-h-[580px]">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center justify-between">
               <span>🕒 Recently Issued</span>
               <button 
                 onClick={fetchHistory}
@@ -343,31 +343,31 @@ export default function IssuePage() {
 
             <div className="overflow-y-auto space-y-3 pr-1 flex-1 custom-scrollbar">
               {isHistoryLoading ? (
-                <div className="py-8 text-center text-slate-500 text-xs">
+                <div className="py-8 text-center text-slate-500 dark:text-slate-500 text-xs">
                   Loading history...
                 </div>
               ) : !account ? (
-                <div className="py-8 text-center text-slate-500 text-xs">
+                <div className="py-8 text-center text-slate-500 dark:text-slate-500 text-xs">
                   Connect wallet to view history
                 </div>
               ) : history.length === 0 ? (
-                <div className="py-8 text-center text-slate-500 text-xs">
+                <div className="py-8 text-center text-slate-500 dark:text-slate-500 text-xs">
                   No certificates issued by this account yet.
                 </div>
               ) : (
                 history.map((cert) => (
                   <div 
                     key={cert.certificateId} 
-                    className="p-3 bg-white/[0.02] border border-white/[0.04] hover:border-purple-500/20 hover:bg-white/[0.04] transition-all rounded-xl text-xs space-y-2 group"
+                    className="p-3 bg-black/5 dark:bg-black/[0.03] dark:bg-white/[0.02] border border-black/5 dark:border-white/[0.04] hover:border-purple-500/20 hover:bg-white/[0.04] transition-all rounded-xl text-xs space-y-2 group"
                   >
                     <div className="flex justify-between items-start gap-2">
-                      <span className="font-semibold text-white truncate max-w-[150px]">{cert.studentName}</span>
-                      <span className="text-[10px] text-slate-500 font-mono">
+                      <span className="font-semibold text-slate-900 dark:text-white truncate max-w-[150px]">{cert.studentName}</span>
+                      <span className="text-[10px] text-slate-500 dark:text-slate-500 font-mono">
                         {new Date(cert.issueDate).toLocaleDateString()}
                       </span>
                     </div>
                     
-                    <div className="text-slate-400 truncate">{cert.courseName}</div>
+                    <div className="text-slate-600 dark:text-slate-400 truncate">{cert.courseName}</div>
                     
                     <div className="pt-1 flex items-center justify-between border-t border-white/[0.03]">
                       <span className="text-[10px] font-mono text-purple-400/80 truncate max-w-[120px]">
@@ -378,7 +378,7 @@ export default function IssuePage() {
                           href={contractInfo.network === 'localhost' ? '#' : `https://sepolia.etherscan.io/tx/${cert.txHash}`}
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="text-[10px] text-slate-500 group-hover:text-purple-400 transition-colors flex items-center gap-1"
+                          className="text-[10px] text-slate-500 dark:text-slate-500 group-hover:text-purple-400 transition-colors flex items-center gap-1"
                         >
                           Tx Link ↗
                         </a>

@@ -62,7 +62,7 @@ export default function Home() {
         </h1>
 
         {/* Sub-headline */}
-        <p className="text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p className="text-slate-600 dark:text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
           Issue tamper-proof academic certificates on the blockchain and let anyone
           verify them instantly — no middlemen, no forgeries.
         </p>
@@ -93,8 +93,8 @@ export default function Home() {
               <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feat.gradient} flex items-center justify-center text-2xl mb-4`}>
                 {feat.icon}
               </div>
-              <h3 className="text-white font-semibold text-lg mb-2">{feat.title}</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">{feat.description}</p>
+              <h3 className="text-slate-900 dark:text-white font-semibold text-lg mb-2">{feat.title}</h3>
+              <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{feat.description}</p>
             </article>
           ))}
         </div>
@@ -102,7 +102,7 @@ export default function Home() {
 
       {/* ── How It Works ──────────────────────────────────────────────────── */}
       <section aria-labelledby="how-it-works-heading" className="text-center">
-        <h2 id="how-it-works-heading" className="text-2xl sm:text-3xl font-bold text-white mb-12">
+        <h2 id="how-it-works-heading" className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-12">
           How It Works
         </h2>
 
@@ -119,7 +119,7 @@ export default function Home() {
               <div className="relative z-10 w-16 h-16 rounded-full glass border border-purple-500/30 flex items-center justify-center">
                 <span className="text-gradient-primary font-bold text-lg">{step}</span>
               </div>
-              <p className="text-slate-300 text-sm max-w-xs">{label}</p>
+              <p className="text-slate-700 dark:text-slate-300 text-sm max-w-xs">{label}</p>
             </div>
           ))}
         </div>

@@ -13,6 +13,7 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useWeb3 } from '../context/Web3Context';
+import { useTheme } from '../context/ThemeContext';
 
 // ── Helper: shorten an Ethereum address for display ─────────────────────
 const shortenAddress = (addr) =>
@@ -45,6 +46,7 @@ function NetworkBadge({ chainName, isCorrectNetwork }) {
  */
 export default function Navbar() {
   const { account, chainName, isCorrectNetwork, isConnecting, connectWallet, disconnectWallet } = useWeb3();
+  const { theme, toggleTheme } = useTheme();
 
   // Mobile menu state
   const [menuOpen, setMenuOpen] = useState(false);
@@ -53,13 +55,13 @@ export default function Navbar() {
   const linkClass = ({ isActive }) =>
     `text-sm font-medium transition-colors duration-200 ${
       isActive
-        ? 'text-white'
-        : 'text-slate-400 hover:text-slate-200'
+        ? 'text-slate-900 dark:text-white'
+        : 'text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:text-slate-200'
     }`;
 
   return (
     <nav
-      className="glass sticky top-0 z-50 border-b border-white/5"
+      className="glass sticky top-0 z-50 border-b dark:border-white/5 border-black/5"
       role="navigation"
       aria-label="Main navigation"
     >
@@ -78,7 +80,7 @@ export default function Navbar() {
               <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 blur-sm opacity-50 group-hover:opacity-70 transition-opacity" />
               {/* Shield / certificate icon */}
               <svg
-                className="absolute inset-0 w-8 h-8 p-1.5 text-white"
+                className="absolute inset-0 w-8 h-8 p-1.5 text-slate-900 dark:text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -91,7 +93,7 @@ export default function Navbar() {
 
             <span className="font-bold text-lg tracking-tight">
               <span className="text-gradient-primary">Cert</span>
-              <span className="text-slate-100">Chain</span>
+              <span className="text-slate-900 dark:text-slate-100">Chain</span>
             </span>
           </Link>
 
@@ -102,8 +104,27 @@ export default function Navbar() {
             <NavLink to="/verify" className={linkClass}>Verify</NavLink>
           </div>
 
-          {/* ── Right Side: Network + Wallet ──────────────────────────────── */}
+          {/* ── Right Side: Network + Theme + Wallet ──────────────────────── */}
           <div className="flex items-center gap-3">
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-xl text-slate-500 dark:text-slate-500 hover:text-slate-900 hover:bg-black/5 dark:text-slate-400 dark:hover:text-slate-900 dark:text-white dark:hover:bg-white/5 transition-colors"
+              aria-label="Toggle dark mode"
+            >
+              {theme === 'dark' ? (
+                // Sun icon for dark mode (click to switch to light)
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              ) : (
+                // Moon icon for light mode
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              )}
+            </button>
+
             {/* Show network badge only when wallet is connected */}
             {account && (
               <NetworkBadge
@@ -117,7 +138,7 @@ export default function Navbar() {
               <div className="flex items-center gap-2">
                 <div
                   className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10
-                             bg-white/[0.03] text-sm text-slate-300 font-mono"
+                             bg-white/[0.03] text-sm text-slate-700 dark:text-slate-300 font-mono"
                   title={account}
                 >
                   {/* Green online dot */}
@@ -162,7 +183,7 @@ export default function Navbar() {
 
             {/* ── Mobile menu toggle ──────────────────────────────────────── */}
             <button
-              className="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
+              className="md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white hover:bg-white/5 transition-colors"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Toggle mobile menu"
               aria-expanded={menuOpen}
@@ -179,7 +200,7 @@ export default function Navbar() {
 
         {/* ── Mobile dropdown menu ─────────────────────────────────────────── */}
         {menuOpen && (
-          <div className="md:hidden border-t border-white/5 py-3 space-y-1 animate-slide-up">
+          <div className="md:hidden border-t border-black/5 dark:border-white/5 py-3 space-y-1 animate-slide-up">
             {[
               { to: '/',       label: 'Home',   end: true },
               { to: '/issue',  label: 'Issue' },
@@ -192,8 +213,8 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   `block px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     isActive
-                      ? 'text-white bg-white/[0.06]'
-                      : 'text-slate-400 hover:text-white hover:bg-white/[0.04]'
+                      ? 'text-slate-900 dark:text-white bg-white/[0.06]'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white hover:bg-white/[0.04]'
                   }`
                 }
                 onClick={() => setMenuOpen(false)}

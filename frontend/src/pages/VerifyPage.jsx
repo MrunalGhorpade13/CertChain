@@ -188,21 +188,21 @@ export default function VerifyPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 sm:py-16">
       <div className="text-center mb-10">
-        <h1 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-500 bg-clip-text text-transparent">
+        <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight sm:text-4xl bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-500 bg-clip-text text-transparent">
           Certificate Verification Portal
         </h1>
-        <p className="mt-3 max-w-2xl mx-auto text-slate-400 text-sm sm:text-base">
+        <p className="mt-3 max-w-2xl mx-auto text-slate-600 dark:text-slate-400 text-sm sm:text-base">
           Verify academic credentials directly against the smart contract registry. Complete transparency without registration.
         </p>
       </div>
 
       {/* Tabs */}
       <div className="flex justify-center mb-8">
-        <div className="bg-slate-900/50 p-1 border border-white/[0.05] rounded-xl flex gap-1">
+        <div className="bg-white/80 dark:bg-slate-900/50 p-1 border border-black/5 dark:border-white/[0.05] rounded-xl flex gap-1">
           <button
             onClick={() => setActiveTab('hash')}
             className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
-              activeTab === 'hash' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'text-slate-400 hover:text-white'
+              activeTab === 'hash' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white'
             }`}
           >
             🔍 Search by ID Hash
@@ -210,7 +210,7 @@ export default function VerifyPage() {
           <button
             onClick={() => setActiveTab('file')}
             className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
-              activeTab === 'file' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'text-slate-400 hover:text-white'
+              activeTab === 'file' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white'
             }`}
           >
             📄 Verify Metadata JSON File
@@ -218,12 +218,12 @@ export default function VerifyPage() {
         </div>
       </div>
 
-      <div className="glass border border-white/[0.06] rounded-2xl p-6 sm:p-8 mb-8 relative overflow-hidden">
+      <div className="glass border border-black/5 dark:border-white/[0.06] rounded-2xl p-6 sm:p-8 mb-8 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-36 h-36 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
         {activeTab === 'hash' ? (
           <div className="space-y-4">
-            <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider">
               Enter Certificate ID (32-byte hash)
             </label>
             <div className="flex flex-col sm:flex-row gap-3">
@@ -252,7 +252,7 @@ export default function VerifyPage() {
             onDragLeave={handleDrag}
             onDrop={handleDrop}
             className={`border-2 border-dashed rounded-xl p-8 text-center transition-all ${
-              dragActive ? 'border-emerald-400 bg-emerald-500/5' : 'border-white/[0.08] hover:border-slate-500/50 bg-slate-900/10'
+              dragActive ? 'border-emerald-400 bg-emerald-500/5' : 'border-black/10 dark:border-white/[0.08] hover:border-slate-300 dark:border-slate-500/50 bg-black/5 dark:bg-slate-900/10'
             }`}
           >
             <input 
@@ -267,10 +267,10 @@ export default function VerifyPage() {
               📥
             </div>
             
-            <p className="text-sm font-semibold text-white mb-1">
+            <p className="text-sm font-semibold text-slate-900 dark:text-white mb-1">
               Drag & Drop your JSON metadata file here
             </p>
-            <p className="text-xs text-slate-400 mb-4">
+            <p className="text-xs text-slate-600 dark:text-slate-400 mb-4">
               or browse your computer to compute and verify the hash instantly
             </p>
             
@@ -292,15 +292,15 @@ export default function VerifyPage() {
             <div className="glass border border-emerald-500/30 rounded-3xl p-6 sm:p-10 shadow-[0_0_50px_-12px_rgba(16,185,129,0.2)] relative overflow-hidden bg-gradient-to-b from-slate-950 to-slate-900">
               
               {/* Verified Shield Banner */}
-              <div className="flex flex-col items-center text-center mb-8 border-b border-white/[0.06] pb-8">
+              <div className="flex flex-col items-center text-center mb-8 border-b border-black/5 dark:border-white/[0.06] pb-8">
                 <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-3xl mb-4 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
                   🛡️
                 </div>
                 <div className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-extrabold uppercase tracking-widest animate-pulse">
                   ✓ Verified Secure
                 </div>
-                <h2 className="text-2xl font-bold text-white mt-4">Academic Certificate Verification</h2>
-                <p className="text-xs text-slate-500 mt-1 font-mono break-all max-w-lg">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-4">Academic Certificate Verification</h2>
+                <p className="text-xs text-slate-500 dark:text-slate-500 mt-1 font-mono break-all max-w-lg">
                   ID: {metadataRecord.certificateId}
                 </p>
               </div>
@@ -313,27 +313,27 @@ export default function VerifyPage() {
                 </div>
 
                 <div className="text-center space-y-1">
-                  <span className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">This is to certify that</span>
+                  <span className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-500 font-semibold">This is to certify that</span>
                   <div className="text-2xl font-serif text-amber-200 font-bold tracking-wide py-2">
                     {metadataRecord.studentName}
                   </div>
                 </div>
 
                 <div className="text-center space-y-1">
-                  <span className="text-[10px] uppercase tracking-wider text-slate-500 font-semibold">has successfully completed the course</span>
-                  <div className="text-lg font-bold text-white tracking-wide py-1">
+                  <span className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-500 font-semibold">has successfully completed the course</span>
+                  <div className="text-lg font-bold text-slate-900 dark:text-white tracking-wide py-1">
                     {metadataRecord.courseName}
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 text-center border-t border-white/[0.05] pt-6">
+                <div className="grid grid-cols-2 gap-4 text-center border-t border-black/5 dark:border-white/[0.05] pt-6">
                   <div>
-                    <span className="block text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Grade / Classification</span>
-                    <span className="text-sm font-semibold text-slate-200">{metadataRecord.grade || 'Pass'}</span>
+                    <span className="block text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-500 font-semibold">Grade / Classification</span>
+                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">{metadataRecord.grade || 'Pass'}</span>
                   </div>
                   <div>
-                    <span className="block text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Date of Issuance</span>
-                    <span className="text-sm font-semibold text-slate-200">
+                    <span className="block text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-500 font-semibold">Date of Issuance</span>
+                    <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">
                       {new Date(metadataRecord.issueDate).toLocaleDateString(undefined, {
                         year: 'numeric',
                         month: 'long',
@@ -343,28 +343,28 @@ export default function VerifyPage() {
                   </div>
                 </div>
 
-                <div className="text-center border-t border-white/[0.05] pt-6">
-                  <span className="block text-[10px] uppercase tracking-wider text-slate-500 font-semibold">Authorized Issuing Body</span>
+                <div className="text-center border-t border-black/5 dark:border-white/[0.05] pt-6">
+                  <span className="block text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-500 font-semibold">Authorized Issuing Body</span>
                   <span className="text-sm font-bold text-emerald-400">{metadataRecord.issuerName}</span>
                 </div>
               </div>
 
               {/* Technical Audit Trail Accordion/Section */}
-              <div className="mt-8 border-t border-white/[0.06] pt-6 space-y-3">
-                <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider">Blockchain Audit Trail</h4>
+              <div className="mt-8 border-t border-black/5 dark:border-white/[0.06] pt-6 space-y-3">
+                <h4 className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Blockchain Audit Trail</h4>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[11px] font-mono">
-                  <div className="p-3 bg-white/[0.01] border border-white/[0.04] rounded-lg space-y-1">
-                    <span className="text-slate-500 block">On-Chain Registry Address:</span>
-                    <span className="text-slate-300 break-all">{contractInfo.contractAddress}</span>
+                  <div className="p-3 bg-black/[0.02] dark:bg-white/[0.01] border border-black/5 dark:border-white/[0.04] rounded-lg space-y-1">
+                    <span className="text-slate-500 dark:text-slate-500 block">On-Chain Registry Address:</span>
+                    <span className="text-slate-700 dark:text-slate-300 break-all">{contractInfo.contractAddress}</span>
                   </div>
-                  <div className="p-3 bg-white/[0.01] border border-white/[0.04] rounded-lg space-y-1">
-                    <span className="text-slate-500 block">Issuer Smart Wallet:</span>
-                    <span className="text-slate-300 break-all">{blockchainRecord.issuer}</span>
+                  <div className="p-3 bg-black/[0.02] dark:bg-white/[0.01] border border-black/5 dark:border-white/[0.04] rounded-lg space-y-1">
+                    <span className="text-slate-500 dark:text-slate-500 block">Issuer Smart Wallet:</span>
+                    <span className="text-slate-700 dark:text-slate-300 break-all">{blockchainRecord.issuer}</span>
                   </div>
                   {metadataRecord.txHash && (
-                    <div className="p-3 bg-white/[0.01] border border-white/[0.04] rounded-lg md:col-span-2 space-y-1">
-                      <span className="text-slate-500 block">Ethereum Transaction Hash:</span>
+                    <div className="p-3 bg-black/[0.02] dark:bg-white/[0.01] border border-black/5 dark:border-white/[0.04] rounded-lg md:col-span-2 space-y-1">
+                      <span className="text-slate-500 dark:text-slate-500 block">Ethereum Transaction Hash:</span>
                       <a
                         href={contractInfo.network === 'localhost' ? '#' : `https://sepolia.etherscan.io/tx/${metadataRecord.txHash}`}
                         target="_blank"
@@ -388,16 +388,16 @@ export default function VerifyPage() {
                 ⚠️
               </div>
               <h3 className="text-xl font-bold text-amber-500">Certificate Revoked</h3>
-              <p className="text-xs text-slate-400 mt-2 max-w-md mx-auto leading-relaxed">
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 max-w-md mx-auto leading-relaxed">
                 This certificate was recorded on the Ethereum blockchain, but it has since been **REVOKED** by the original issuing institution.
               </p>
-              <div className="mt-5 p-3 bg-white/[0.02] border border-white/[0.04] rounded-xl text-[11px] font-mono text-left max-w-lg mx-auto space-y-1.5">
+              <div className="mt-5 p-3 bg-black/5 dark:bg-black/[0.03] dark:bg-white/[0.02] border border-black/5 dark:border-white/[0.04] rounded-xl text-[11px] font-mono text-left max-w-lg mx-auto space-y-1.5">
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Issuer Wallet:</span>
-                  <span className="text-slate-300">{blockchainRecord.issuer.slice(0, 10)}...{blockchainRecord.issuer.slice(-10)}</span>
+                  <span className="text-slate-500 dark:text-slate-500">Issuer Wallet:</span>
+                  <span className="text-slate-700 dark:text-slate-300">{blockchainRecord.issuer.slice(0, 10)}...{blockchainRecord.issuer.slice(-10)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Revocation Status:</span>
+                  <span className="text-slate-500 dark:text-slate-500">Revocation Status:</span>
                   <span className="text-amber-400 font-semibold">Active Revocation Event</span>
                 </div>
               </div>
@@ -411,7 +411,7 @@ export default function VerifyPage() {
                 ❌
               </div>
               <h3 className="text-xl font-bold text-red-500">Verification Failed</h3>
-              <p className="text-xs text-slate-400 mt-2 max-w-md mx-auto leading-relaxed">
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 max-w-md mx-auto leading-relaxed">
                 No record of this certificate hash exists on the Ethereum blockchain registry. It may be forged or entered incorrectly.
               </p>
             </div>
@@ -424,22 +424,22 @@ export default function VerifyPage() {
                 🔗
               </div>
               <h3 className="text-xl font-bold text-blue-400">On-Chain Record Verified</h3>
-              <p className="text-xs text-slate-400 mt-2 max-w-md mx-auto leading-relaxed">
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 max-w-md mx-auto leading-relaxed">
                 The cryptographic hash of this certificate exists on the Ethereum blockchain registry, but the readable off-chain metadata (student name, course, grades) could not be retrieved from the server.
               </p>
               
-              <div className="mt-5 p-3 bg-white/[0.02] border border-white/[0.04] rounded-xl text-[11px] font-mono text-left max-w-lg mx-auto space-y-1">
+              <div className="mt-5 p-3 bg-black/5 dark:bg-black/[0.03] dark:bg-white/[0.02] border border-black/5 dark:border-white/[0.04] rounded-xl text-[11px] font-mono text-left max-w-lg mx-auto space-y-1">
                 <div className="flex justify-between">
-                  <span className="text-slate-500">On-Chain Registry:</span>
-                  <span className="text-slate-300">Verified Exist = True</span>
+                  <span className="text-slate-500 dark:text-slate-500">On-Chain Registry:</span>
+                  <span className="text-slate-700 dark:text-slate-300">Verified Exist = True</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Registrar Wallet:</span>
-                  <span className="text-slate-300">{blockchainRecord.issuer.slice(0, 10)}...{blockchainRecord.issuer.slice(-10)}</span>
+                  <span className="text-slate-500 dark:text-slate-500">Registrar Wallet:</span>
+                  <span className="text-slate-700 dark:text-slate-300">{blockchainRecord.issuer.slice(0, 10)}...{blockchainRecord.issuer.slice(-10)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Timestamp of Entry:</span>
-                  <span className="text-slate-300">{new Date(blockchainRecord.timestamp * 1000).toLocaleString()}</span>
+                  <span className="text-slate-500 dark:text-slate-500">Timestamp of Entry:</span>
+                  <span className="text-slate-700 dark:text-slate-300">{new Date(blockchainRecord.timestamp * 1000).toLocaleString()}</span>
                 </div>
               </div>
             </div>

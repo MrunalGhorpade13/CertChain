@@ -21,7 +21,33 @@
 
 /* ── 3. CSS Custom Properties (Design Tokens) ────────────────────────────── */
 :root {
-  /* Core backgrounds */
+  /* LIGHT THEME (BEIGE AESTHETIC) */
+  --bg-primary:   #f5f0e6;
+  --bg-card:      #faf8f5;
+  --bg-glass:     rgba(250, 248, 245, 0.7);
+  --border-glass: rgba(139, 115, 85, 0.15);
+
+  /* Accents (Deep espresso and mocha to perfectly match beige) */
+  --neon-blue:    #6D4C41; /* Coffee brown */
+  --neon-purple:  #3E2723; /* Deep espresso */
+  --neon-cyan:    #5D4037; /* Rich mocha */
+  
+  --grad-1: rgba(62, 39, 35, 0.08);
+  --grad-2: rgba(109, 76, 65, 0.06);
+
+  /* Status */
+  --success:      #10b981;
+  --danger:       #ef4444;
+  --warning:      #f59e0b;
+
+  /* Typography */
+  --text-primary:   #4a3b32;
+  --text-secondary: #705c4f;
+  --text-muted:     #9e8c81;
+}
+
+.dark {
+  /* DARK THEME */
   --bg-primary:   #07080f;
   --bg-card:      #0d0f1e;
   --bg-glass:     rgba(13, 15, 30, 0.6);
@@ -31,11 +57,9 @@
   --neon-blue:    #3b82f6;
   --neon-purple:  #8b5cf6;
   --neon-cyan:    #06b6d4;
-
-  /* Status */
-  --success:      #10b981;
-  --danger:       #ef4444;
-  --warning:      #f59e0b;
+  
+  --grad-1: rgba(139, 92, 246, 0.15);
+  --grad-2: rgba(59, 130, 246, 0.1);
 
   /* Typography */
   --text-primary:   #f1f5f9;
@@ -61,8 +85,8 @@ body {
   min-height: 100vh;
   /* Subtle radial gradient on the background to add depth */
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(139, 92, 246, 0.15) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+    radial-gradient(ellipse 80% 50% at 50% -10%, var(--grad-1) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, var(--grad-2) 0%, transparent 50%);
   background-attachment: fixed;
 }
 
@@ -88,10 +112,14 @@ body {
 
   /* Slightly more opaque version for popovers / dropdowns */
   .glass-heavy {
-    background: rgba(13, 15, 30, 0.85);
+    background: var(--bg-card);
     backdrop-filter: blur(24px) saturate(200%);
     -webkit-backdrop-filter: blur(24px) saturate(200%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-glass);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dark .glass-heavy {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   }
 
@@ -121,23 +149,34 @@ body {
   .btn-secondary {
     @apply relative inline-flex items-center justify-center gap-2;
     @apply px-6 py-3 rounded-xl font-semibold text-sm;
-    @apply text-slate-300 transition-all duration-300 ease-out;
-    @apply border border-slate-700 cursor-pointer select-none;
+    @apply text-slate-600 dark:text-slate-300 transition-all duration-300 ease-out;
+    @apply border border-slate-300 dark:border-slate-700 cursor-pointer select-none;
   }
   .btn-secondary:hover {
-    @apply border-slate-500 text-white;
+    @apply border-slate-400 dark:border-slate-500 text-slate-900 dark:text-white;
+    background: rgba(0, 0, 0, 0.04);
+  }
+  .dark .btn-secondary:hover {
     background: rgba(255, 255, 255, 0.04);
   }
 
   /* ── Form input field ─────────────────────────────────────────────────── */
   .input-glass {
-    @apply w-full px-4 py-3 rounded-xl text-sm text-slate-100;
-    @apply placeholder-slate-500 outline-none transition-all duration-300;
+    @apply w-full px-4 py-3 rounded-xl text-sm text-slate-900 dark:text-slate-100;
+    @apply placeholder-slate-400 dark:placeholder-slate-500 outline-none transition-all duration-300;
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  .dark .input-glass {
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
   .input-glass:focus {
     border-color: var(--neon-purple);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15), 0 0 20px rgba(99, 102, 241, 0.1);
+    background: rgba(0, 0, 0, 0.01);
+  }
+  .dark .input-glass:focus {
     box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15), 0 0 20px rgba(139, 92, 246, 0.1);
     background: rgba(255, 255, 255, 0.06);
   }
