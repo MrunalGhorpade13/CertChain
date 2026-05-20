@@ -202,7 +202,9 @@ export default function VerifyPage() {
           <button
             onClick={() => setActiveTab('hash')}
             className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
-              activeTab === 'hash' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white'
+              activeTab === 'hash'
+                ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             🔍 Search by ID Hash
@@ -210,7 +212,9 @@ export default function VerifyPage() {
           <button
             onClick={() => setActiveTab('file')}
             className={`px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
-              activeTab === 'file' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:text-white'
+              activeTab === 'file'
+                ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
             }`}
           >
             📄 Verify Metadata JSON File
@@ -289,14 +293,15 @@ export default function VerifyPage() {
         <div className="animate-scale-in">
           {/* 🟢 VALID & VERIFIED CERTIFICATE DISPLAY */}
           {verificationResult === 'valid' && metadataRecord && (
-            <div className="glass border border-emerald-500/30 rounded-3xl p-6 sm:p-10 shadow-[0_0_50px_-12px_rgba(16,185,129,0.2)] relative overflow-hidden bg-gradient-to-b from-slate-950 to-slate-900">
-              
+            <div className="glass border border-emerald-500/30 rounded-3xl p-6 sm:p-10 shadow-[0_0_50px_-12px_rgba(16,185,129,0.2)] relative overflow-hidden
+              bg-gradient-to-b from-white to-slate-50/80 dark:from-slate-950 dark:to-slate-900">
+
               {/* Verified Shield Banner */}
-              <div className="flex flex-col items-center text-center mb-8 border-b border-black/5 dark:border-white/[0.06] pb-8">
+              <div className="flex flex-col items-center text-center mb-8 border-b border-black/10 dark:border-white/[0.06] pb-8">
                 <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-3xl mb-4 shadow-[0_0_20px_rgba(16,185,129,0.2)]">
                   🛡️
                 </div>
-                <div className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-400 text-xs font-extrabold uppercase tracking-widest animate-pulse">
+                <div className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-emerald-700 dark:text-emerald-400 text-xs font-extrabold uppercase tracking-widest animate-pulse">
                   ✓ Verified Secure
                 </div>
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white mt-4">Academic Certificate Verification</h2>
@@ -306,27 +311,28 @@ export default function VerifyPage() {
               </div>
 
               {/* Certificate Inner Card layout */}
-              <div className="space-y-6 max-w-2xl mx-auto border border-amber-500/10 bg-amber-500/[0.01] p-6 rounded-2xl relative">
-                {/* Watermark/Logo */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] text-[120px] font-bold pointer-events-none select-none">
+              <div className="space-y-6 max-w-2xl mx-auto border border-amber-600/20 dark:border-amber-500/10
+                bg-amber-50/60 dark:bg-amber-500/[0.01] p-6 rounded-2xl relative">
+                {/* Watermark */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.04] dark:opacity-[0.02] text-[120px] font-bold pointer-events-none select-none text-amber-800 dark:text-white">
                   VERIFIED
                 </div>
 
                 <div className="text-center space-y-1">
                   <span className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-500 font-semibold">This is to certify that</span>
-                  <div className="text-2xl font-serif text-amber-200 font-bold tracking-wide py-2">
+                  <div className="text-2xl font-serif text-amber-800 dark:text-amber-200 font-bold tracking-wide py-2">
                     {metadataRecord.studentName}
                   </div>
                 </div>
 
                 <div className="text-center space-y-1">
                   <span className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-500 font-semibold">has successfully completed the course</span>
-                  <div className="text-lg font-bold text-slate-900 dark:text-white tracking-wide py-1">
+                  <div className="text-lg font-bold text-slate-800 dark:text-white tracking-wide py-1">
                     {metadataRecord.courseName}
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 text-center border-t border-black/5 dark:border-white/[0.05] pt-6">
+                <div className="grid grid-cols-2 gap-4 text-center border-t border-amber-600/10 dark:border-white/[0.05] pt-6">
                   <div>
                     <span className="block text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-500 font-semibold">Grade / Classification</span>
                     <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">{metadataRecord.grade || 'Pass'}</span>
@@ -343,33 +349,33 @@ export default function VerifyPage() {
                   </div>
                 </div>
 
-                <div className="text-center border-t border-black/5 dark:border-white/[0.05] pt-6">
+                <div className="text-center border-t border-amber-600/10 dark:border-white/[0.05] pt-6">
                   <span className="block text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-500 font-semibold">Authorized Issuing Body</span>
-                  <span className="text-sm font-bold text-emerald-400">{metadataRecord.issuerName}</span>
+                  <span className="text-sm font-bold text-emerald-700 dark:text-emerald-400">{metadataRecord.issuerName}</span>
                 </div>
               </div>
 
-              {/* Technical Audit Trail Accordion/Section */}
-              <div className="mt-8 border-t border-black/5 dark:border-white/[0.06] pt-6 space-y-3">
+              {/* Blockchain Audit Trail */}
+              <div className="mt-8 border-t border-black/10 dark:border-white/[0.06] pt-6 space-y-3">
                 <h4 className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Blockchain Audit Trail</h4>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[11px] font-mono">
-                  <div className="p-3 bg-black/[0.02] dark:bg-white/[0.01] border border-black/5 dark:border-white/[0.04] rounded-lg space-y-1">
+                  <div className="p-3 bg-black/[0.03] dark:bg-white/[0.01] border border-black/[0.06] dark:border-white/[0.04] rounded-lg space-y-1">
                     <span className="text-slate-500 dark:text-slate-500 block">On-Chain Registry Address:</span>
                     <span className="text-slate-700 dark:text-slate-300 break-all">{contractInfo.contractAddress}</span>
                   </div>
-                  <div className="p-3 bg-black/[0.02] dark:bg-white/[0.01] border border-black/5 dark:border-white/[0.04] rounded-lg space-y-1">
+                  <div className="p-3 bg-black/[0.03] dark:bg-white/[0.01] border border-black/[0.06] dark:border-white/[0.04] rounded-lg space-y-1">
                     <span className="text-slate-500 dark:text-slate-500 block">Issuer Smart Wallet:</span>
                     <span className="text-slate-700 dark:text-slate-300 break-all">{blockchainRecord.issuer}</span>
                   </div>
                   {metadataRecord.txHash && (
-                    <div className="p-3 bg-black/[0.02] dark:bg-white/[0.01] border border-black/5 dark:border-white/[0.04] rounded-lg md:col-span-2 space-y-1">
+                    <div className="p-3 bg-black/[0.03] dark:bg-white/[0.01] border border-black/[0.06] dark:border-white/[0.04] rounded-lg md:col-span-2 space-y-1">
                       <span className="text-slate-500 dark:text-slate-500 block">Ethereum Transaction Hash:</span>
                       <a
                         href={contractInfo.network === 'localhost' ? '#' : `https://sepolia.etherscan.io/tx/${metadataRecord.txHash}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-purple-400 hover:underline break-all block"
+                        className="text-purple-600 dark:text-purple-400 hover:underline break-all block"
                       >
                         {metadataRecord.txHash} ↗
                       </a>

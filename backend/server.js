@@ -19,8 +19,9 @@ import dotenv  from 'dotenv';
 // Import database connection utility
 import connectDB from './src/config/db.js';
 
-// Import route handlers (to be expanded in Phase 3)
+// Import route handlers
 import certificateRoutes from './src/routes/certificates.js';
+import requestRoutes    from './src/routes/requests.js';
 
 // ── Load environment variables from .env file ────────────────────────────
 dotenv.config();
@@ -84,6 +85,12 @@ app.get('/api/health', (req, res) => {
  * All routes are prefixed with /api/certificates
  */
 app.use('/api/certificates', certificateRoutes);
+
+/**
+ * Issuance Request routes — student submissions & admin approvals.
+ * All routes are prefixed with /api/requests
+ */
+app.use('/api/requests', requestRoutes);
 
 // ── Global Error Handler ──────────────────────────────────────────────────
 // Must be AFTER all routes (4 parameters = Express error handler)

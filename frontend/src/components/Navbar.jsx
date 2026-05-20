@@ -100,7 +100,9 @@ export default function Navbar() {
           {/* ── Desktop Navigation Links ──────────────────────────────────── */}
           <div className="hidden md:flex items-center gap-6">
             <NavLink to="/"       end className={linkClass}>Home</NavLink>
-            <NavLink to="/issue"  className={linkClass}>Issue</NavLink>
+            <NavLink to="/login"   className={linkClass}>Login</NavLink>
+            <NavLink to="/student" className={linkClass}>Student</NavLink>
+            <NavLink to="/issue"  className={linkClass}>Admin</NavLink>
             <NavLink to="/verify" className={linkClass}>Verify</NavLink>
           </div>
 
@@ -202,9 +204,11 @@ export default function Navbar() {
         {menuOpen && (
           <div className="md:hidden border-t border-black/5 dark:border-white/5 py-3 space-y-1 animate-slide-up">
             {[
-              { to: '/',       label: 'Home',   end: true },
-              { to: '/issue',  label: 'Issue' },
-              { to: '/verify', label: 'Verify' },
+              { to: '/',        label: 'Home',    end: true },
+              { to: '/login',   label: 'Login' },
+              { to: '/student', label: 'Student' },
+              { to: '/issue',   label: 'Admin' },
+              { to: '/verify',  label: 'Verify' },
             ].map(({ to, label, end }) => (
               <NavLink
                 key={to}

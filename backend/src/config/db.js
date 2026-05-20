@@ -20,7 +20,7 @@ import mongoose from 'mongoose';
  */
 const connectDB = async () => {
   try {
-    const MONGODB_URI = process.env.MONGODB_URI;
+    let MONGODB_URI = process.env.MONGODB_URI;
 
     if (!MONGODB_URI) {
       throw new Error(
@@ -30,13 +30,20 @@ const connectDB = async () => {
     }
 
     /**
+     * Node 18+ resolves "localhost" to the IPv6 loopback (::1) by default on
+     * Windows, which causes connection failures when MongoDB only listens on
+     * IPv4 (127.0.0.1). We explicitly swap it to avoid this.
+     */
+    MONGODB_URI = MONGODB_URI.replace('mongodb://localhost', 'mongodb://127.0.0.1');
+
+    /**
      * Mongoose connection options:
      *  - No deprecated options needed in Mongoose 8+; defaults are sensible.
      *  - dbName: explicitly specify the database name (can also be in URI).
      */
     const conn = await mongoose.connect(MONGODB_URI, {
       dbName: process.env.DB_NAME || 'certchain',
-      serverSelectionTimeoutMS: 3000, // Timeout after 3s to trigger fallback quickly
+      serverSelectionTimeoutMS: 5000, // Timeout after 5s to trigger fallback
     });
 
     console.log(`✅ MongoDB connected: ${conn.connection.host}`);
@@ -45,8 +52,8 @@ const connectDB = async () => {
 
   } catch (error) {
     console.error('❌ MongoDB connection failed:', error.message);
-    console.log('\n⚠️  [FALLBACK] Initializing a local file-based database (db_fallback.json) instead.');
-    console.log('   You can still test and run the entire application fully!');
+    console.log('\n⚠️  [FALLBACK] Switching to file-based database (requests_fallback.json / db_fallback.json).');
+    console.log('   The application is still fully functional — all data is persisted to JSON files.');
     global.useMockDb = true;
   }
 };
